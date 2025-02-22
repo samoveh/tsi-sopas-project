@@ -14,7 +14,7 @@ CLIENT = InferenceHTTPClient(
 # Function to make predictions using Roboflow API
 def predict(image):
     # Send image to Roboflow API
-    result = CLIENT.infer(image, model_id="sopas/10")  
+    result = CLIENT.infer(image, model_id="sopas/8")  
     return result
 
 # Streamlit app
