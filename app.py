@@ -28,7 +28,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file)
     
     # Display the uploaded image
-    st.image(image, caption='Uploaded Image.', use_column_width=True)
+    st.image(image, caption='Uploaded Image.', use_container_width=True)
 
     # Make prediction
     st.write("Predicting...")
@@ -66,4 +66,4 @@ if uploaded_file is not None:
     annotated_image = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
 
     # Display the annotated image
-    st.image(annotated_image, caption='Predicted Image with Labels.', use_column_width=True)
+    st.image(annotated_image, caption='Predicted Image with Labels.', use_container_width=True)
