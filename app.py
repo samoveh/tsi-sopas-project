@@ -54,7 +54,7 @@ if uploaded_file is not None:
     # Add labels to the annotated image
     labels = [
         f"{class_name} {confidence:.2f}"
-        for class_name, confidence in zip(detections.class_id, detections.confidence)
+        for class_name, confidence in zip(detections.class, detections.confidence)
     ]
     annotated_image = label_annotator.annotate(
         scene=annotated_image, detections=detections, labels=labels)
