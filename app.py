@@ -21,14 +21,14 @@ def predict(image):
 st.title("SOPAS-PROJECT: YOLOv12 Object Detection with Roboflow and Streamlit")
 
 # Upload image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png","bmp"])
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png", "bmp"])
 
 if uploaded_file is not None:
     # Read the image
     image = Image.open(uploaded_file)
     
     # Display the uploaded image
-    st.image(image, caption='Uploaded Image.', use_container_width=True)
+    st.image(image, caption='Uploaded Image.', use_column_width=True)
 
     # Make prediction
     st.write("Predicting...")
@@ -51,10 +51,13 @@ if uploaded_file is not None:
     annotated_image = bounding_box_annotator.annotate(
         scene=image_np, detections=detections)
 
+    # Extract class names from predictions
+    class_names = [prediction["class"] for prediction in predictions["predictions"]]
+
     # Add labels to the annotated image
     labels = [
         f"{class_name} {confidence:.2f}"
-        for class_name, confidence in zip(detections.class_id, detections.confidence)
+        for class_name, confidence in zip(class_names, detections.confidence)
     ]
     annotated_image = label_annotator.annotate(
         scene=annotated_image, detections=detections, labels=labels)
@@ -63,4 +66,4 @@ if uploaded_file is not None:
     annotated_image = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
 
     # Display the annotated image
-    st.image(annotated_image, caption='Predicted Image with Labels.', use_container_width=True)
+    st.image(annotated_image, caption='Predicted Image with Labels.', use_column_width=True)
