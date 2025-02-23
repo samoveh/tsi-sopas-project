@@ -18,7 +18,7 @@ def predict(image):
     return result
 
 # Streamlit app
-st.title("SOPAS-PROJECT: YOLOv12 Object Detection with Roboflow and Streamlit")
+st.title("TSI-SOPAS-PROJECT:")
 
 # Upload image
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png", "bmp"])
