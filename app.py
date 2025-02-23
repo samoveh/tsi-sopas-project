@@ -14,7 +14,7 @@ CLIENT = InferenceHTTPClient(
 # Function to make predictions using Roboflow API
 def predict(image):
     # Send image to Roboflow API
-    result = CLIENT.infer(image, model_id="sopas/10")  
+    result = CLIENT.infer(image, model_id="sopas/10")  # Replace with your model ID
     return result
 
 # Streamlit app
@@ -50,8 +50,14 @@ if uploaded_file is not None:
     # Annotate the image with our inference results
     annotated_image = bounding_box_annotator.annotate(
         scene=image_np, detections=detections)
+
+    # Add labels to the annotated image
+    labels = [
+        f"{class_name} {confidence:.2f}"
+        for class_name, confidence in zip(detections.class_id, detections.confidence)
+    ]
     annotated_image = label_annotator.annotate(
-        scene=annotated_image, detections=detections)
+        scene=annotated_image, detections=detections, labels=labels)
 
     # Convert back to RGB for Streamlit
     annotated_image = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
