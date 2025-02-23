@@ -21,7 +21,7 @@ def predict(image):
 st.title("SOPAS-PROJECT: YOLOv12 Object Detection with Roboflow and Streamlit")
 
 # Upload image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png","bmp"])
 
 if uploaded_file is not None:
     # Read the image
